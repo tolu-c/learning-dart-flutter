@@ -34,37 +34,46 @@ class ResultsScreen extends StatelessWidget {
             question['selected_answer'] == question['correct_answer'])
         .length;
 
-    return Center(
-      child: Container(
-        margin: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              "You answered $correctQuestionsLength out of $totalQuestionsLength questions correctly!",
-              style: GoogleFonts.poppins(
-                color: const Color.fromARGB(255, 255, 255, 255),
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+    return Container(
+      margin: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            "You answered $correctQuestionsLength out of $totalQuestionsLength questions correctly!",
+            style: GoogleFonts.poppins(
+              color: const Color.fromARGB(255, 255, 255, 255),
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(
-              height: 20,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          QuestionsSummary(
+            summaryData: summaryData,
+          ),
+          const SizedBox(
+            height: 28,
+          ),
+          TextButton.icon(
+            icon: const Icon(
+              Icons.refresh_rounded,
+              size: 24,
+              color: Colors.white,
             ),
-            QuestionsSummary(
-              summaryData: summaryData,
+            onPressed: restartQuiz,
+            label: Text(
+              "Restart Quiz",
+              style: GoogleFonts.poppins(color: Colors.white, fontSize: 24),
             ),
-            const SizedBox(
-              height: 28,
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white,
             ),
-            TextButton(
-              onPressed: restartQuiz,
-              child: const Text("Restart Quiz"),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
