@@ -27,6 +27,13 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final totalQuestionsLength = questions.length;
+    final correctQuestionsLength = summaryData
+        .where((question) =>
+            question['selected_answer'] == question['correct_answer'])
+        .length;
+
     return Center(
       child: Container(
         margin: const EdgeInsets.all(40),
@@ -35,7 +42,7 @@ class ResultsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "You answered X out of Y questions correctly!",
+              "You answered $correctQuestionsLength out of $totalQuestionsLength questions correctly!",
               style: GoogleFonts.poppins(
                 color: const Color.fromARGB(255, 255, 255, 255),
                 fontSize: 32,
@@ -47,7 +54,7 @@ class ResultsScreen extends StatelessWidget {
               height: 20,
             ),
             QuestionsSummary(
-              summaryData: getSummaryData(),
+              summaryData: summaryData,
             ),
             const SizedBox(
               height: 28,
@@ -55,7 +62,7 @@ class ResultsScreen extends StatelessWidget {
             TextButton(
               onPressed: restartQuiz,
               child: const Text("Restart Quiz"),
-            )
+            ),
           ],
         ),
       ),
