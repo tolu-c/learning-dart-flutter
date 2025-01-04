@@ -1,4 +1,4 @@
-import 'package:expenses_tracker_app/expenses_list.dart';
+import 'package:expenses_tracker_app/widgets/expenses_list/expenses_list.dart';
 import 'package:expenses_tracker_app/models/expense.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class _ExpensesState extends State<Expenses> {
     ),
     Expense(
       title: "Cinema",
-      amount: 15.99,
+      amount: 15,
       date: DateTime.now(),
       category: ExpenseCategory.leisure,
     ),
@@ -31,7 +31,7 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: [
           const Text(
-            'Expenses Chart',
+            'My Expenses Chart',
             textAlign: TextAlign.center,
           ),
           Expanded(
