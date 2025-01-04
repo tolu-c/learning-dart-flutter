@@ -42,6 +42,9 @@ class _QuizState extends State<Quiz> {
       changeScreen('questions');
     });
 
+    if (activeScreen == 'home') {
+      selectedAnswers = [];
+    }
     if (activeScreen == 'questions') {
       screenWidget = QuestionsScreen(
         onSelectAnswer: selectAnswer,
