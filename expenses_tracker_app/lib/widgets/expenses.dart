@@ -35,6 +35,10 @@ class _ExpensesState extends State<Expenses> {
             icon: const Icon(Icons.add_rounded),
           ),
         ],
+        title: const Text(
+          "My Expenses Tracker",
+          // textAlign: TextAlign.center,
+        ),
       ),
       body: Column(
         children: [
