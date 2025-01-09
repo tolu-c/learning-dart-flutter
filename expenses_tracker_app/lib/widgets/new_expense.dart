@@ -5,7 +5,12 @@ import 'package:intl/intl.dart';
 final dateFormatter = DateFormat.yMd();
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense({
+    required this.onAddExpense,
+    super.key,
+  });
+
+  final void Function(Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -32,12 +37,13 @@ class _NewExpenseState extends State<NewExpense> {
   }
 
   void _submitExpenseData() {
+    // * input validation
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsInValid = enteredAmount == null || enteredAmount <= 0;
     if (_titleController.text.trim().isEmpty ||
         amountIsInValid ||
         _selectedDate == null) {
-      // ! show error message
+      // * show error message
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -56,6 +62,15 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
+    // * add expense
+    widget.onAddExpense(
+      Expense(
+        title: _titleController.text,
+        amount: enteredAmount,
+        date: _selectedDate!,
+        category: _selectedCategory,
+      ),
+    );
   }
 
   @override
