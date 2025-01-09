@@ -14,18 +14,19 @@ class ExpensesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) => Dismissible(
-          key: ValueKey(
+        key: ValueKey(
+          expenses[index],
+        ),
+        onDismissed: (direction) {
+          onRemoveExpense(
             expenses[index],
-          ),
-          onDismissed: (direction) {
-            onRemoveExpense(
-              expenses[index],
-            );
-            // print(direction);
-          },
-          child: ExpenseItem(
-            expense: expenses[index],
-          )),
+          );
+          // print(direction);
+        },
+        child: ExpenseItem(
+          expense: expenses[index],
+        ),
+      ),
       itemCount: expenses.length,
     );
   }
