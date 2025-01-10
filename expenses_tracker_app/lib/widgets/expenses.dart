@@ -91,9 +91,15 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 8,
+          ),
           const Text(
             'My Expenses Chart',
             textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 24,
           ),
           Expanded(
             child: mainContent,
